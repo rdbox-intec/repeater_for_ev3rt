@@ -31,5 +31,5 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          rdbox/$CI_REPOSITORY_NAME:${{ steps.tags.outputs.tag }}
-          rdbox/$CI_REPOSITORY_NAME:latest
+          rdbox/${{ env.CI_REPOSITORY_NAME }}:${{ steps.tags.outputs.tag }}
+          rdbox/${{ env.CI_REPOSITORY_NAME }}:latest
