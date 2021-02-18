@@ -1,0 +1,14 @@
+<launch>
+  <param name="robot_description"
+         command="$(find xacro)/xacro.py '$(find repeater_for_ev3rt)/urdf/ev3rt.xacro'" />
+  <node pkg="repeater_for_ev3rt" name="repeater_for_ev3rt" type="repeater.py" output="screen">
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find repeater_for_ev3rt)/launch/mode1.yaml" />
+  </node>
+</launch>
